@@ -1,8 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Clock, Calendar } from 'lucide-react'
-import blogbook from "/public/blogbook.png"
-import mainlaptop from "/public/mainlaptop.png"
+import book from "/public/book.png"
+import laptop from "/public/laptop.png"
 import blog from "/public/blog.png"
 import { Button } from "@/components/ui/button"
 import insta from "/public/insta.png"
@@ -11,7 +11,7 @@ export default function MainTwo() {
   const blogs = [
     {
       id: 1,
-      image: mainlaptop,
+      image: laptop,
       title: "Going all-in with millennial design",
       readTime: "5 min",
       date: "12th Oct 2022",
@@ -19,7 +19,7 @@ export default function MainTwo() {
     },
     {
       id: 2,
-      image: blogbook, 
+      image: book, 
       title: "Exploring new ways of decorating",
       readTime: "5 min",
       date: "12th Oct 2022",
