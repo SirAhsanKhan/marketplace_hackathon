@@ -11,24 +11,9 @@ import { useWishlist } from "@/components/wishlist-context"
 import Image from "next/image"
 
 export default function NavBar() {
-  const [isMobile, setIsMobile] = useState(false)
   const { state: cartState } = useCart()
   const { state: wishlistState } = useWishlist()
   const [isScrolled, setIsScrolled] = useState(false)
-  // Removed: const [isSignedIn, setIsSignedIn] = useState(false)
-
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    checkIsMobile()
-    window.addEventListener("resize", checkIsMobile)
-
-    return () => {
-      window.removeEventListener("resize", checkIsMobile)
-    }
-  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,7 +50,6 @@ export default function NavBar() {
             <NavIcons
               cartItemCount={cartState.items.reduce((sum, item) => sum + item.quantity, 0)}
               wishlistItemCount={wishlistState.items.length}
-              // Removed: isSignedIn={isSignedIn}
             />
             {/* Hamburger Menu - Visible only on mobile */}
             <Sheet>
@@ -91,45 +75,34 @@ export default function NavBar() {
   )
 }
 
-function NavLinks({ mobile = false }: { mobile?: boolean }) {
+interface NavLinksProps {
+  mobile?: boolean
+}
+
+function NavLinks({ mobile = false }: NavLinksProps) {
   const linkClass = mobile
     ? "block py-2 text-sm font-medium text-black hover:text-primary transition-colors"
     : "relative text-sm font-medium text-black hover:text-primary transition-colors"
 
+  const links = [
+    { href: "/", label: "Home" },
+    { href: "/shop", label: "Shop" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
+  ]
+
   return (
     <>
-      <li className="group list-none">
-        <Link href="/" className={linkClass}>
-          Home
-          {!mobile && (
-            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full"></span>
-          )}
-        </Link>
-      </li>
-      <li className="group list-none">
-        <Link href="/shop" className={linkClass}>
-          Shop
-          {!mobile && (
-            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full"></span>
-          )}
-        </Link>
-      </li>
-      <li className="group list-none">
-        <Link href="/about" className={linkClass}>
-          About
-          {!mobile && (
-            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full"></span>
-          )}
-        </Link>
-      </li>
-      <li className="group list-none">
-        <Link href="/contact" className={linkClass}>
-          Contact
-          {!mobile && (
-            <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full"></span>
-          )}
-        </Link>
-      </li>
+      {links.map((link) => (
+        <li key={link.href} className="group list-none">
+          <Link href={link.href} className={linkClass}>
+            {link.label}
+            {!mobile && (
+              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full"></span>
+            )}
+          </Link>
+        </li>
+      ))}
     </>
   )
 }
@@ -137,7 +110,6 @@ function NavLinks({ mobile = false }: { mobile?: boolean }) {
 interface NavIconsProps {
   cartItemCount: number
   wishlistItemCount: number
-  
 }
 
 function NavIcons({ cartItemCount, wishlistItemCount }: NavIconsProps) {
