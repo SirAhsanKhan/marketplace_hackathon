@@ -12,20 +12,14 @@ export async function POST(req: NextRequest) {
   });
 
   try {
-    // if (!shipeToAddress || !packages) {
-    //   return new Response(
-    //     JSON.stringify({ error: "Missing required fields" }),
-    //     { status: 400 }
-    //   );
-    // }
     const shipmentDetails = await shipengine.getRatesWithShipmentDetails({
       shipment: {
         shipTo: shipeToAddress,
         shipFrom: {
-          name: "Recipient Name", // Replace with the recipient's name
-          phone: "+92 300 1234567", // Replace with the recipient's phone number
-          addressLine1: "Aiwan-e-Sadar", // Shortened to fit within 35 characters
-          addressLine2: "Civil Lines", // Additional details moved to Address Line 2
+          name: "Recipient Name",
+          phone: "+92 300 1234567",
+          addressLine1: "Your Street Name, House No.",
+          addressLine2: "Hyderi",
           cityLocality: "Karachi",
           stateProvince: "Sindh",
           postalCode: "75580",
@@ -40,9 +34,12 @@ export async function POST(req: NextRequest) {
       },
     });
     console.log(shipeToAddress, parcels, shipmentDetails);
-    return new Response(JSON.stringify({ shipeToAddress, parcels , shipmentDetails}), { status: 200 });
+    return new Response(
+      JSON.stringify({ shipeToAddress, parcels, shipmentDetails }),
+      { status: 200 }
+    );
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return new Response(JSON.stringify({ error: error }), {
       status: 500,
     });

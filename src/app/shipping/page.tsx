@@ -9,13 +9,13 @@ import { Loader2 } from "lucide-react"
 
 const ShippingRatesPage = () => {
   const [shipeToAddress, setshipeToAddress] = useState<Address>({
-    name: "John Doe",
-    phone: "+1 555-678-1234",
-    addressLine1: "1600 Pennsylvania Avenue NW",
-    addressLine2: "",
-    cityLocality: "Washington",
-    stateProvince: "DC",
-    postalCode: "20500",
+    name: "Jonathan Reed",
+    phone: "+1 111-2223-5678",
+    addressLine1: "427 Maple Drive",
+    addressLine2: "Apt 34, Hillview Heightset",
+    cityLocality: "Greenwood",
+    stateProvince: "California",
+    postalCode: "90210",
     countryCode: "US",
     addressResidentialIndicator: "no",
   })
