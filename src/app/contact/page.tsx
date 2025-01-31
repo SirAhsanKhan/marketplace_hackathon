@@ -1,12 +1,11 @@
-import ContactPage from '@/components/contact-header'
-import React from 'react'
+import ContactHeader from "@/components/contact-header"
 
-const Contact = () => {
-  return (
-    <>
-    <ContactPage />
-    </>
-  )
+export const metadata = {
+  title: "Contact Us",
+  description: "Get in touch with us for any questions or concerns",
 }
 
-export default Contact
+export default function ContactPage() {
+  return <ContactHeader />
+}
+
