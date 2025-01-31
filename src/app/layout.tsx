@@ -7,7 +7,6 @@ import { CartProvider } from "@/components/cart-context"
 import { WishlistProvider } from "@/components/wishlist-context"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import Script from "next/script"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,26 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head className="md:p-8 lg:p-11">
-        {/* Chatbot Configuration Script */}
-        <Script
-          id="chatbot-config"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.embeddedChatbotConfig = {
-                chatbotId: "uhmozxi9UYSh5lFd_QXTB",
-                domain: "www.chatbase.co"
-              };
-            `,
-          }}
-        />
-        <Script
-          src="https://www.chatbase.co/embed.min.js"
-          data-chatbot-id="uhmozxi9UYSh5lFd_QXTB"
-          data-domain="www.chatbase.co"
-          strategy="afterInteractive"
-          defer
-        />
+        {/* Head content without chatbot scripts */}
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <WishlistProvider>
@@ -68,4 +48,3 @@ export default function RootLayout({
     </html>
   )
 }
-
