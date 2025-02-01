@@ -1,8 +1,8 @@
 import { defineType } from "sanity";
 
 export default defineType({
-    name: 'shopProduct',
-    title: 'Shop Product',
+    name: 'product',
+    title: 'Product',
     type: 'document',
     fields: [
         {
@@ -75,6 +75,5 @@ export default defineType({
   },
   validation: Rule => Rule.required()
 }
-    ]
+    ]
 });
-
