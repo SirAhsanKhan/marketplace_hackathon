@@ -1,6 +1,6 @@
-import product from './product';
+import product from "./product";
 import review from './reviwes';
-import orders from './orders';
+import orders from './';
 
 import { SchemaTypeDefinition } from 'sanity';
 
