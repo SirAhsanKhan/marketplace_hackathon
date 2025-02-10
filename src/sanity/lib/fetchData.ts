@@ -1,7 +1,7 @@
 import { client } from './client';
 
 export const fetchProductData = async () => {
-  const query = `*[_type == "shopProduct"]{
+  const query = `*[_type == "product"]{
     _id,
     title,
     "slug": slug.current,
@@ -23,7 +23,7 @@ export const fetchProductData = async () => {
 };
 
 export const fetchSingleProduct = async (slug: string) => {
-  const query = `*[_type == "shopProduct" && slug.current == $slug][0]{
+  const query = `*[_type == "product" && slug.current == $slug][0]{
     _id,
     title,
     "slug": slug.current,
@@ -47,7 +47,7 @@ export const fetchSingleProduct = async (slug: string) => {
 
 
 export const fetchSingleProductWithReviews = async (slug: string) => {
-  const query = `*[_type == "shopProduct" && slug.current == $slug][0]{
+  const query = `*[_type == "product" && slug.current == $slug][0]{
     _id,
     title,
     "slug": slug.current,
